@@ -1,0 +1,43 @@
+# Visual Studio temporary files
+*.obj
+*.pdb
+*.exe
+*.dll
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+ipch/
+debug/
+release/
+testresults/
+[Bb]in/
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+[Bb]uild/
+obj/
+[Ll]og/
+.vs/
+.vs/Login
+
+# Visual Studio code analysis files
+*.esproj
+*.ruleset
+
+# DbUp migration files
+*.sql

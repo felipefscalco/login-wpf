@@ -3,10 +3,240 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:Login.Converters"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800"
-        WindowStartupLocation="CenterOwner">
-    <Grid>
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Height="550" Width="750"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        MouseDown="Window_MouseDown">
 
-    </Grid>
+    <Window.Resources>
+        <converters:ReverseVisibilityToBoolConverter x:Key="ReverseVisibilityToBoolConverter"></converters:ReverseVisibilityToBoolConverter>
+        <converters:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter"></converters:VisibilityToBoolConverter>
+    </Window.Resources>
+
+    <Border CornerRadius="12">
+        <Border CornerRadius="10"                    
+            BorderThickness="2"
+            Opacity="0.95">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="Black" Offset="0.85"/>
+                    <GradientStop Color="#1B1448" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="LOG IN"
+                               Foreground="DarkGray"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               FontFamily="Montserrat"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+                    <Button x:Name="btnMinimize"                           
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28AEED"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnClose"                          
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="PaleVioletRed"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <Grid Width="350"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Margin="0,35,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="/Resources/Images/medium2.png" Grid.Row="0" RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                    <!--Welcome back section-->
+                    <Grid Width="340" 
+                            Grid.Row="1"
+                            Margin="0,35,0,0"
+                            HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Click="btnGoogleSignIn_Click" 
+                                Width="200" Height="30" Grid.Row="0"                                
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="DarkGreen"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Resources/Images/Icons/google_icon.png" Width="20" Height="20" Margin="0 0 5 0" HorizontalAlignment="Left"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock Text="Sign in with Google" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                            </StackPanel>
+                        </Button>
+
+                        <Button Click="btnEmailSignIn_Click" 
+                            Width="200" Height="30" Grid.Row="2"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="DarkGreen"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Resources/Images/Icons/email_icon.png" Width="20" Height="20" Margin="0 0 5 0" 
+                                       HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock Text="Sign in with Email" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+
+                    <!--Sign up section-->
+                    <Grid Width="340"
+                            Grid.Row="1"
+                            Margin="0,35,0,0"
+                            Visibility="Hidden">
+                    </Grid>
+
+                </Grid>
+
+                <TextBlock Foreground="White"
+                           Grid.Row="2"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" >
+                    Dont have an account? 
+                    <Hyperlink NavigateUri="https://example.com/terms" Foreground="Green">
+                        <Run Text="Sign up" MouseLeftButtonDown="SignUp_MouseLeftButtonDown"/>
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock Foreground="White"
+                           Grid.Row="3"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                    Forgot email or trouble signing in? 
+                    <Hyperlink NavigateUri="https://example.com/terms" Foreground="Green">
+                        <Run Text="Get help"/>
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock Foreground="White"
+                           Grid.Row="4"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                    By signing up, you agree to our
+                    <Hyperlink NavigateUri="https://example.com/terms" Foreground="Green">
+                        <Run Text="Terms of Service"/>
+                    </Hyperlink>
+                    and acknowledge that our
+                    <Hyperlink NavigateUri="https://example.com/privacy" Foreground="Green">
+                        <Run Text="Privacy Policy"/>
+                    </Hyperlink>
+                    applies to you.
+                </TextBlock>
+            </Grid>
+        </Border>
+    </Border>
 </Window>
